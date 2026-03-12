@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import { DEFAULT_REMINDER_TIME, DEFAULT_TIMEZONE } from "@/lib/constants";
-import { env } from "@/lib/env";
+import { serverEnv } from "@/lib/env.server";
 import type { TelegramInitPayload } from "@/lib/telegram/types";
 
 function hmacSha256(key: Buffer | string, value: string) {
@@ -28,14 +28,14 @@ export function validateTelegramInitData(initData: string) {
     throw new Error("Telegram init data is missing");
   }
 
-  if (env.NEXT_PUBLIC_MOCK_TELEGRAM) {
+  if (serverEnv.NEXT_PUBLIC_MOCK_TELEGRAM === "true") {
     return decodeTelegramInitData(initData);
   }
 
   const values = parseInitData(initData);
   const hash = values.hash;
 
-  if (!hash || !env.TELEGRAM_BOT_TOKEN) {
+  if (!hash || !serverEnv.TELEGRAM_BOT_TOKEN) {
     throw new Error("Telegram validation is not configured");
   }
 
@@ -48,7 +48,7 @@ export function validateTelegramInitData(initData: string) {
 
   const secret = crypto
     .createHash("sha256")
-    .update(env.TELEGRAM_BOT_TOKEN)
+    .update(serverEnv.TELEGRAM_BOT_TOKEN)
     .digest();
 
   const calculatedHash = hmacSha256(secret, checkString).toString("hex");

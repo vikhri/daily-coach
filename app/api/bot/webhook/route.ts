@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { env } from "@/lib/env";
+import { serverEnv } from "@/lib/env.server";
 import { createServiceSupabaseClient } from "@/lib/supabase/server";
 import { sendTelegramMessage } from "@/lib/telegram/bot";
 
@@ -36,9 +36,9 @@ export async function POST(request: Request) {
 
       await sendTelegramMessage({
         chatId: String(message.chat.id),
-        text: "Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ. Р—РґРµСЃСЊ РјРѕР¶РЅРѕ РѕС‚РїСЂР°РІР»СЏС‚СЊ РµР¶РµРґРЅРµРІРЅС‹Р№ РѕС‚С‡РµС‚ Рё РїРѕР»СѓС‡Р°С‚СЊ РїР»Р°РЅ РЅР° Р·Р°РІС‚СЂР°.",
-        buttonText: "РћС‚РєСЂС‹С‚СЊ Mini App",
-        webAppUrl: env.TELEGRAM_WEBAPP_URL
+        text: "Добро пожаловать. Здесь можно отправлять ежедневный отчет и получать план на завтра.",
+        buttonText: "Открыть Mini App",
+        webAppUrl: serverEnv.TELEGRAM_WEBAPP_URL
       });
     }
 

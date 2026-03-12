@@ -1,4 +1,4 @@
-import { createMockInitData } from "@/lib/telegram/server";
+import { clientEnv } from "@/lib/env.client";
 
 declare global {
   interface Window {
@@ -19,6 +19,22 @@ declare global {
   }
 }
 
+function createMockInitData() {
+  const user = {
+    id: 777000123,
+    first_name: "Ira",
+    username: "local_user"
+  };
+
+  const payload = new URLSearchParams({
+    auth_date: `${Math.floor(Date.now() / 1000)}`,
+    hash: "mock",
+    user: JSON.stringify(user)
+  });
+
+  return payload.toString();
+}
+
 export function getTelegramInitData() {
   if (typeof window === "undefined") {
     return "";
@@ -32,5 +48,9 @@ export function getTelegramInitData() {
     return app.initData;
   }
 
-  return createMockInitData();
+  if (clientEnv.NEXT_PUBLIC_MOCK_TELEGRAM) {
+    return createMockInitData();
+  }
+
+  return "";
 }

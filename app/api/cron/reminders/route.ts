@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
+import { serverEnv } from "@/lib/env.server";
 import { createServiceSupabaseClient } from "@/lib/supabase/server";
-import { env } from "@/lib/env";
 import { sendTelegramMessage } from "@/lib/telegram/bot";
 
 function todayInTimezone(timezone: string) {
@@ -35,8 +35,8 @@ export async function POST(request: Request) {
   try {
     const authHeader = request.headers.get("authorization");
     if (
-      env.TELEGRAM_INIT_DATA_VALIDATION_SECRET &&
-      authHeader !== `Bearer ${env.TELEGRAM_INIT_DATA_VALIDATION_SECRET}`
+      serverEnv.TELEGRAM_INIT_DATA_VALIDATION_SECRET &&
+      authHeader !== `Bearer ${serverEnv.TELEGRAM_INIT_DATA_VALIDATION_SECRET}`
     ) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -83,9 +83,9 @@ export async function POST(request: Request) {
 
       await sendTelegramMessage({
         chatId: profile.telegram_chat_id ?? profile.telegram_user_id,
-        text: "РџРѕСЂР° Р·Р°РїРѕР»РЅРёС‚СЊ РѕС‚С‡РµС‚ Р·Р° РґРµРЅСЊ",
-        buttonText: "РћС‚РєСЂС‹С‚СЊ РѕС‚С‡РµС‚",
-        webAppUrl: env.TELEGRAM_WEBAPP_URL
+        text: "Пора заполнить отчет за день",
+        buttonText: "Открыть отчет",
+        webAppUrl: serverEnv.TELEGRAM_WEBAPP_URL
       });
 
       await supabase.from("reminder_logs").insert({

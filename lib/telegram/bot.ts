@@ -1,4 +1,4 @@
-import { env } from "@/lib/env";
+import { serverEnv } from "@/lib/env.server";
 
 const base = "https://api.telegram.org";
 
@@ -13,7 +13,7 @@ export async function sendTelegramMessage(params: {
   buttonText?: string;
   webAppUrl?: string;
 }) {
-  if (!env.TELEGRAM_BOT_TOKEN) {
+  if (!serverEnv.TELEGRAM_BOT_TOKEN) {
     return null;
   }
 
@@ -31,7 +31,7 @@ export async function sendTelegramMessage(params: {
         }
       : undefined;
 
-  const response = await fetch(`${base}/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+  const response = await fetch(`${base}/bot${serverEnv.TELEGRAM_BOT_TOKEN}/sendMessage`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -51,13 +51,13 @@ export async function sendTelegramMessage(params: {
 }
 
 export async function setTelegramWebhook() {
-  if (!env.TELEGRAM_BOT_TOKEN || !env.APP_BASE_URL) {
+  if (!serverEnv.TELEGRAM_BOT_TOKEN || !serverEnv.APP_BASE_URL) {
     throw new Error("Webhook env is missing");
   }
 
-  const webhookUrl = `${env.APP_BASE_URL}/api/bot/webhook`;
+  const webhookUrl = `${serverEnv.APP_BASE_URL}/api/bot/webhook`;
 
-  return fetch(`${base}/bot${env.TELEGRAM_BOT_TOKEN}/setWebhook`, {
+  return fetch(`${base}/bot${serverEnv.TELEGRAM_BOT_TOKEN}/setWebhook`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
