@@ -6,11 +6,11 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 const items: Array<{ href: Route; label: string }> = [
-  { href: "/", label: "Главная" },
-  { href: "/report", label: "Отчет" },
-  { href: "/weight", label: "Вес" },
-  { href: "/history", label: "История" },
-  { href: "/profile", label: "Профиль" }
+  { href: "/", label: "Р“Р»Р°РІРЅР°СЏ" },
+  { href: "/report", label: "РћС‚С‡РµС‚" },
+  { href: "/weight", label: "Р’РµСЃ" },
+  { href: "/history", label: "РСЃС‚РѕСЂРёСЏ" },
+  { href: "/profile", label: "РџСЂРѕС„РёР»СЊ" }
 ];
 
 export function BottomNav() {

@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xxd \"c:/Users/Ira/WebstormProjects/daily-coach-miniapp/components/layout/bottom-nav.tsx\")",
+      "Bash(iconv -f WINDOWS-1251 -t UTF-8 \"c:/Users/Ira/WebstormProjects/daily-coach-miniapp/components/layout/bottom-nav.tsx\")",
+      "Bash(\"c:/Users/Ira/WebstormProjects/daily-coach-miniapp/components/layout/bottom-nav.tsx.tmp\")",
+      "Bash(mv \"c:/Users/Ira/WebstormProjects/daily-coach-miniapp/components/layout/bottom-nav.tsx.tmp\" \"c:/Users/Ira/WebstormProjects/daily-coach-miniapp/components/layout/bottom-nav.tsx\")"
+    ]
+  }
+}
