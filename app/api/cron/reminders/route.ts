@@ -83,8 +83,8 @@ export async function POST(request: Request) {
 
       await sendTelegramMessage({
         chatId: profile.telegram_chat_id ?? profile.telegram_user_id,
-        text: "Пора заполнить отчет за день",
-        buttonText: "Открыть отчет",
+        text: "РџРѕСЂР° Р·Р°РїРѕР»РЅРёС‚СЊ РѕС‚С‡РµС‚ Р·Р° РґРµРЅСЊ",
+        buttonText: "РћС‚РєСЂС‹С‚СЊ РѕС‚С‡РµС‚",
         webAppUrl: serverEnv.TELEGRAM_WEBAPP_URL
       });
 

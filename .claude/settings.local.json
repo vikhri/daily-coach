@@ -4,7 +4,14 @@
       "Bash(xxd \"c:/Users/Ira/WebstormProjects/daily-coach-miniapp/components/layout/bottom-nav.tsx\")",
       "Bash(iconv -f WINDOWS-1251 -t UTF-8 \"c:/Users/Ira/WebstormProjects/daily-coach-miniapp/components/layout/bottom-nav.tsx\")",
       "Bash(\"c:/Users/Ira/WebstormProjects/daily-coach-miniapp/components/layout/bottom-nav.tsx.tmp\")",
-      "Bash(mv \"c:/Users/Ira/WebstormProjects/daily-coach-miniapp/components/layout/bottom-nav.tsx.tmp\" \"c:/Users/Ira/WebstormProjects/daily-coach-miniapp/components/layout/bottom-nav.tsx\")"
+      "Bash(mv \"c:/Users/Ira/WebstormProjects/daily-coach-miniapp/components/layout/bottom-nav.tsx.tmp\" \"c:/Users/Ira/WebstormProjects/daily-coach-miniapp/components/layout/bottom-nav.tsx\")",
+      "Bash(for f in \"/c/Users/Ira/WebstormProjects/daily-coach-miniapp/app/api/bot/webhook/route.ts\" \"/c/Users/Ira/WebstormProjects/daily-coach-miniapp/app/api/cron/reminders/route.ts\" \"/c/Users/Ira/WebstormProjects/daily-coach-miniapp/lib/ai/analyze.ts\")",
+      "Bash(do)",
+      "Bash(iconv -f WINDOWS-1251 -t UTF-8 \"$f\")",
+      "Bash(\"$f.tmp\")",
+      "Bash(mv \"$f.tmp\" \"$f\")",
+      "Bash(echo \"Converted: $f\")",
+      "Bash(done)"
     ]
   }
 }
